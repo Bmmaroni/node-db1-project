@@ -12,7 +12,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.get('/:id', checkAccountId, (req, res, next) => {
+router.get('/:id', checkAccountId, async (req, res, next) => {
   // DO YOUR MAGIC
   try {
     const account = await db.getById(req.params.id)
@@ -23,7 +23,7 @@ router.get('/:id', checkAccountId, (req, res, next) => {
   }
 })
 
-router.post('/', checkAccountNameUnique, checkAccountPayload, (req, res, next) => {
+router.post('/', checkAccountPayload, async (req, res, next) => {
   // DO YOUR MAGIC
   try {
     const account = await db.create({
@@ -37,7 +37,7 @@ router.post('/', checkAccountNameUnique, checkAccountPayload, (req, res, next) =
   }
 })
 
-router.put('/:id', checkAccountPayload, checkAccountId, (req, res, next) => {
+router.put('/:id', checkAccountPayload, checkAccountId, async (req, res, next) => {
   // DO YOUR MAGIC
   try {
     const { id } = req.params
@@ -54,7 +54,7 @@ router.put('/:id', checkAccountPayload, checkAccountId, (req, res, next) => {
   }
 });
 
-router.delete('/:id', checkAccountId, (req, res, next) => {
+router.delete('/:id', checkAccountId, async (req, res, next) => {
   // DO YOUR MAGIC
   try {
     const account = await db.deleteById(req.params.id)

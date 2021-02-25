@@ -30,15 +30,15 @@ exports.checkAccountPayload = (req, res, next) => {
   next()
 }
 
-exports.checkAccountNameUnique = async (req, res, next) => {
-  // DO YOUR MAGIC
-  if (req.body.name === ) {
-    res.status(400).json({
-      message: "that name is taken"
-    })
-  }
-  next()
-}
+// exports.checkAccountNameUnique = async (req, res, next) => {
+//   // DO YOUR MAGIC
+//   if (req.body.name === ) {
+//     res.status(400).json({
+//       message: "that name is taken"
+//     })
+//   }
+//   next()
+// }
 
 exports.checkAccountId = async (req, res, next) => {
   // DO YOUR MAGIC

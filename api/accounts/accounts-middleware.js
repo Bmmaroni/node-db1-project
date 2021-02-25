@@ -1,3 +1,5 @@
+const accounts = require("../accounts/accounts-model")
+
 exports.checkAccountPayload = (req, res, next) => {
   // DO YOUR MAGIC
   if (!req.body) {
@@ -25,12 +27,35 @@ exports.checkAccountPayload = (req, res, next) => {
       message: "budget of account is too large or too small"
     })
   }
+  next()
 }
 
 exports.checkAccountNameUnique = async (req, res, next) => {
   // DO YOUR MAGIC
+  if (req.body.name === ) {
+    res.status(400).json({
+      message: "that name is taken"
+    })
+  }
+  next()
 }
 
 exports.checkAccountId = async (req, res, next) => {
   // DO YOUR MAGIC
+  accounts.getById(req.params.id)
+          .then(account => {
+            if (account) {
+              req.account = account
+            } else {
+              res.status(404).json({
+                message: "account not found"
+              })
+            }
+          })
+          .catch(err => {
+            res.status(500).json({
+              message: "Error finding that account"
+            })
+          })
+  next()
 }

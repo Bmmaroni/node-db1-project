@@ -2,7 +2,7 @@ const router = require('express').Router()
 const db = require("./accounts-model")
 const { checkAccountPayload, checkAccountNameUnique, checkAccountId } = require("./accounts-middleware")
 
-router.get('/', async (req, res, next) => {
+router.get('/api/accounts/', async (req, res, next) => {
   // DO YOUR MAGIC
   try {
     res.json(await db.getAll())
@@ -12,7 +12,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.get('/:id', checkAccountId, async (req, res, next) => {
+router.get('/api/accounts/:id', checkAccountId, async (req, res, next) => {
   // DO YOUR MAGIC
   try {
     const account = await db.getById(req.params.id)
@@ -37,7 +37,7 @@ router.post('/', checkAccountNameUnique, checkAccountPayload, async (req, res, n
   }
 })
 
-router.put('/:id', checkAccountPayload, checkAccountId, async (req, res, next) => {
+router.put('api/accounts/:id', checkAccountPayload, checkAccountId, async (req, res, next) => {
   // DO YOUR MAGIC
   try {
     const { id } = req.params
@@ -54,7 +54,7 @@ router.put('/:id', checkAccountPayload, checkAccountId, async (req, res, next) =
   }
 });
 
-router.delete('/:id', checkAccountId, async (req, res, next) => {
+router.delete('api/accounts/:id', checkAccountId, async (req, res, next) => {
   // DO YOUR MAGIC
   try {
     const account = await db.deleteById(req.params.id)
